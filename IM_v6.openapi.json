@@ -1,0 +1,3174 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "IM_v6",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "公共接口"
+    },
+    {
+      "name": "注册/登陆"
+    },
+    {
+      "name": "消息"
+    },
+    {
+      "name": "自定义表情"
+    },
+    {
+      "name": "用户信息"
+    },
+    {
+      "name": "钱包"
+    },
+    {
+      "name": "红包"
+    },
+    {
+      "name": "签到"
+    }
+  ],
+  "paths": {
+    "/v6/login": {
+      "post": {
+        "summary": "登陆",
+        "x-apifox-folder": "注册/登陆",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "注册/登陆"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "dat123",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "qq123123",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "0登陆失败，1登陆成功"
+                    },
+                    "info": {
+                      "type": "string",
+                      "description": "失败提示信息"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "用户ID(云信ID）"
+                        },
+                        "token_nim": {
+                          "type": "string",
+                          "description": "云信token"
+                        },
+                        "token_api": {
+                          "type": "string",
+                          "description": "web接口token"
+                        },
+                        "is_admin": {
+                          "type": "integer",
+                          "description": "管理号"
+                        },
+                        "allow_create_team": {
+                          "type": "integer",
+                          "description": "建群权限"
+                        },
+                        "allow_add_friend": {
+                          "type": "integer",
+                          "description": "加好友权限"
+                        }
+                      },
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "id",
+                        "token_nim",
+                        "token_api",
+                        "is_admin",
+                        "allow_create_team",
+                        "allow_add_friend"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "登陆成功！",
+                      "data": {
+                        "id": 38177262,
+                        "token_nim": "eyJzaWduYXR1cmUiOiIxNzc3OGZiNTA5ZDY0NWVmNjkyMmJmN2QwY2ZjZDIzNmY5MmVhYzVkIiwiY3VyVGltZSI6MTYyODI2NjQxODY1MiwidHRsIjo2MDB9",
+                        "token_api": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3eCIsImF1ZCI6ImltX2FwcCIsImlhdCI6MTYyODI2NjQxOCwibmJmIjoxNjI4MjY2NDE4LCJleHAiOjE2NDM4MTg0MTgsInVpZCI6MzgxNzcyNjIsIm5hbWUiOiJpbXUwMDEifQ.8AdOyTomCDlYcrQHrnXHnHVlWBO_sHhBRouVgjLKYFo",
+                        "is_admin": 1,
+                        "allow_create_team": 1,
+                        "allow_add_friend": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5347510-run"
+      }
+    },
+    "/v6/register": {
+      "post": {
+        "summary": "注册",
+        "x-apifox-folder": "注册/登陆",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "注册/登陆"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "登陆账号",
+            "required": true,
+            "example": "13108725492",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nickname",
+            "in": "query",
+            "description": "昵称",
+            "required": true,
+            "example": "我是一个昵称",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "密码",
+            "required": true,
+            "example": "qq123123",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repassword",
+            "in": "query",
+            "description": "确认密码",
+            "required": true,
+            "example": "qq123123",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "短信验证码",
+            "required": false,
+            "example": "985707",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "invite",
+            "in": "query",
+            "description": "邀请码",
+            "required": false,
+            "example": "8855",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "device",
+            "in": "query",
+            "description": "客户端类型：0手机，1电脑客户端",
+            "required": false,
+            "example": "0",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "1注册成功 0注册失败"
+                    },
+                    "info": {
+                      "type": "string",
+                      "description": "失败信息"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "description": "云信ID"
+                        },
+                        "username": {
+                          "type": "string",
+                          "description": "登陆账号"
+                        },
+                        "nickname": {
+                          "type": "string",
+                          "description": "昵称"
+                        },
+                        "nimtoken": {
+                          "type": "string",
+                          "description": "云信token"
+                        },
+                        "allow_create_team": {
+                          "type": "string",
+                          "description": "建群权限"
+                        },
+                        "allow_add_friend": {
+                          "type": "string",
+                          "description": "加好友权限"
+                        },
+                        "token_api": {
+                          "type": "string",
+                          "description": "API接口toekn"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "username",
+                        "nickname",
+                        "nimtoken",
+                        "allow_create_team",
+                        "allow_add_friend",
+                        "token_api"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "id",
+                        "username",
+                        "nickname",
+                        "nimtoken",
+                        "allow_create_team",
+                        "allow_add_friend",
+                        "token_api"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "注册成功！",
+                      "data": {
+                        "id": "79731377",
+                        "username": "imu003",
+                        "nickname": "我是一个昵称",
+                        "nimtoken": "eyJzaWduYXR1cmUiOiI0NjMyMTUzODdmYjFiNGU1NWJmZjJhMjNmMmIyMzljODY0ZDFmNDk2IiwiY3VyVGltZSI6MTYyODI2Njg1Njg2MywidHRsIjo2MDB9",
+                        "allow_create_team": "0",
+                        "allow_add_friend": "1",
+                        "token_api": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ3eCIsImF1ZCI6ImltX2FwcCIsImlhdCI6MTYyODI2Njg1NiwibmJmIjoxNjI4MjY2ODU2LCJleHAiOjE2NDM4MTg4NTYsInVpZCI6Nzk3MzEzNzcsIm5hbWUiOiJpbXUwMDMifQ.cr0if93Qk0OvlYG0yJFUAu_M4-RT-JM8vbq8AWoc1n0"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5350765-run"
+      }
+    },
+    "/v6/conf": {
+      "get": {
+        "summary": "系统配置",
+        "x-apifox-folder": "公共接口",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "公共接口"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "1成功"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "show_profile_sign": {
+                          "type": "string",
+                          "description": "展示个性签名"
+                        },
+                        "enable_offline_tips": {
+                          "type": "string",
+                          "description": "踢线提示开关"
+                        },
+                        "offline_tips": {
+                          "type": "string",
+                          "description": "踢线提示内容"
+                        },
+                        "show_profile_id": {
+                          "type": "string",
+                          "description": "显示账号ID"
+                        },
+                        "enable_pop_time": {
+                          "type": "string",
+                          "description": "定时弹窗开关"
+                        },
+                        "pop_start_time": {
+                          "type": "string",
+                          "description": "定时弹窗定时配置"
+                        },
+                        "pop_announcement": {
+                          "type": "string",
+                          "description": "定时弹窗内容"
+                        },
+                        "enable_register": {
+                          "type": "string",
+                          "description": "开放注册开关"
+                        },
+                        "enable_invite": {
+                          "type": "string",
+                          "description": "开启邀请码功能"
+                        },
+                        "required_invite": {
+                          "type": "string",
+                          "description": "邀请码必填"
+                        },
+                        "required_conf_avatar": {
+                          "type": "string",
+                          "description": "提示新用户设置头像"
+                        },
+                        "enable_online_status": {
+                          "type": "string",
+                          "description": "显示在线状态"
+                        },
+                        "enable_msg_read_status": {
+                          "type": "string",
+                          "description": "显示消息阅读状态"
+                        },
+                        "enable_limit_repeat_input": {
+                          "type": "string",
+                          "description": "是否限制输入重复内容"
+                        },
+                        "enable_limit_input_status": {
+                          "type": "string",
+                          "description": "是否显示输入状态"
+                        },
+                        "enable_history_msg_button": {
+                          "type": "string",
+                          "description": "是否显示聊天记录按钮"
+                        },
+                        "show_red_packet_details": {
+                          "type": "string",
+                          "description": "是否显示红包领取详情"
+                        },
+                        "msg_interval": {
+                          "type": "string",
+                          "description": "重复消息间隔时间"
+                        },
+                        "msg_word_limit": {
+                          "type": "string",
+                          "description": "文字消息字数限制"
+                        },
+                        "msg_block_interval": {
+                          "type": "string",
+                          "description": "消息列表时间标注间隔"
+                        },
+                        "allow_search_team_id": {
+                          "type": "string",
+                          "description": "是否可以搜索群号加群"
+                        },
+                        "show_team_members": {
+                          "type": "string",
+                          "description": "群信息界面是否显示群成员"
+                        },
+                        "show_team_members_count": {
+                          "type": "string",
+                          "description": "群标题是否显示群人数"
+                        },
+                        "show_team_members_bot_count": {
+                          "type": "string",
+                          "description": "是否显示假的群人数"
+                        },
+                        "allow_team_members_exit": {
+                          "type": "string",
+                          "description": "是否允许普通群成员退群"
+                        },
+                        "allow_team_owner_clear_msg": {
+                          "type": "string",
+                          "description": "是否允许群主清屏"
+                        },
+                        "show_team_invite_msg": {
+                          "type": "string",
+                          "description": "显示邀请入群消息"
+                        },
+                        "allow_team_user_visit_teaminfo": {
+                          "type": "string",
+                          "description": "允许普通用户查看群信息"
+                        },
+                        "enable_sign_activity": {
+                          "type": "string",
+                          "description": "开启签到活动"
+                        },
+                        "sign_reward": {
+                          "type": "string",
+                          "description": "签到奖励金额"
+                        },
+                        "sign_continuous_days": {
+                          "type": "string",
+                          "description": "连续签到天数"
+                        },
+                        "sign_continuous_reward": {
+                          "type": "string",
+                          "description": "连续签到奖励"
+                        },
+                        "sign_rule": {
+                          "type": "string",
+                          "description": "签到活动详情"
+                        },
+                        "enable_recharge": {
+                          "type": "string",
+                          "description": "充值功能开关"
+                        },
+                        "limit_min_recharge": {
+                          "type": "string",
+                          "description": "最低充值金额"
+                        },
+                        "enable_withdraw": {
+                          "type": "string",
+                          "description": "提现功能开关"
+                        },
+                        "enable_withdraw_game": {
+                          "type": "string",
+                          "description": "提现到平台开关"
+                        },
+                        "enable_withdraw_bank": {
+                          "type": "string",
+                          "description": "提现到银行卡开关"
+                        },
+                        "limit_min_withdraw": {
+                          "type": "string",
+                          "description": "最低提现金额"
+                        },
+                        "transfer_once_limit": {
+                          "type": "string",
+                          "description": "单笔转账限额"
+                        },
+                        "transfer_day_limit": {
+                          "type": "string",
+                          "description": "单日转账限额"
+                        },
+                        "transfer_day_count_limit": {
+                          "type": "string",
+                          "description": "单日转账次数"
+                        },
+                        "repeat_msg_interval": {
+                          "type": "string",
+                          "description": "重复消息间隔时间"
+                        },
+                        "nav_button1_enable": {
+                          "type": "string",
+                          "description": "站外链接导航按钮1—开关"
+                        },
+                        "nav_button1_title": {
+                          "type": "string",
+                          "description": "站外链接导航按钮1—标题"
+                        },
+                        "nav_button1_sort": {
+                          "type": "string",
+                          "description": "站外链接导航按钮1—样式0向TAB展示；1竖向列表展示"
+                        },
+                        "nav_button2_enable": {
+                          "type": "string",
+                          "description": "站外链接导航按钮2—开关"
+                        },
+                        "nav_button2_title": {
+                          "type": "string",
+                          "description": "站外链接导航按钮2—标题"
+                        },
+                        "nav_button2_sort": {
+                          "type": "string",
+                          "description": "站外链接导航按钮2—样式0向TAB展示；1竖向列表展示"
+                        },
+                        "enable_sms_register": {
+                          "type": "string",
+                          "description": "短信注册开关"
+                        },
+                        "chatlink": {
+                          "type": "string",
+                          "description": "在线客服链接"
+                        },
+                        "enable_register_pc": {
+                          "type": "string",
+                          "description": "PC注册开关"
+                        },
+                        "transfer_once_min_limit": {
+                          "type": "string",
+                          "description": "单次转账最小金额"
+                        },
+                        "enable_wallet": {
+                          "type": "string",
+                          "description": "钱包功能"
+                        },
+                        "enable_redpack": {
+                          "type": "string",
+                          "description": "红包功能"
+                        },
+                        "redpack_amount_limit_min": {
+                          "type": "string",
+                          "description": "红包最低限额"
+                        },
+                        "redpack_amount_limit_max": {
+                          "type": "string",
+                          "description": "红包最大限额"
+                        },
+                        "redpack_team_amount_limit_min": {
+                          "type": "string",
+                          "description": "群红包最小限额"
+                        },
+                        "redpack_team_amount_limit_max": {
+                          "type": "string",
+                          "description": "群红包最大限额"
+                        },
+                        "redpack_timeout": {
+                          "type": "string",
+                          "description": "红包超时时间（小时）"
+                        },
+                        "link": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "position": {
+                                "type": "string",
+                                "description": "位置：0，1"
+                              },
+                              "icon": {
+                                "type": "string",
+                                "description": "图标"
+                              },
+                              "title": {
+                                "type": "string",
+                                "description": "标题"
+                              },
+                              "url": {
+                                "type": "string",
+                                "description": "网址"
+                              }
+                            },
+                            "required": [
+                              "position",
+                              "url",
+                              "title",
+                              "icon"
+                            ],
+                            "x-apifox-ignore-properties": [],
+                            "x-apifox-orders": [
+                              "position",
+                              "icon",
+                              "title",
+                              "url"
+                            ]
+                          },
+                          "description": "站外链接"
+                        },
+                        "redpack_p2p": {
+                          "type": "string",
+                          "description": "个人红包：0关闭，1仅管理员，2所有人"
+                        },
+                        "redpack_p2t": {
+                          "type": "string",
+                          "description": "群红包：0关闭，1仅管理员，2所有人"
+                        }
+                      },
+                      "required": [
+                        "show_profile_sign",
+                        "enable_offline_tips",
+                        "offline_tips",
+                        "show_profile_id",
+                        "enable_pop_time",
+                        "pop_start_time",
+                        "pop_announcement",
+                        "enable_register",
+                        "enable_invite",
+                        "required_invite",
+                        "required_conf_avatar",
+                        "enable_online_status",
+                        "enable_msg_read_status",
+                        "enable_limit_repeat_input",
+                        "enable_limit_input_status",
+                        "enable_history_msg_button",
+                        "show_red_packet_details",
+                        "msg_interval",
+                        "msg_word_limit",
+                        "msg_block_interval",
+                        "allow_search_team_id",
+                        "show_team_members",
+                        "show_team_members_count",
+                        "show_team_members_bot_count",
+                        "allow_team_members_exit",
+                        "allow_team_owner_clear_msg",
+                        "show_team_invite_msg",
+                        "allow_team_user_visit_teaminfo",
+                        "enable_sign_activity",
+                        "sign_reward",
+                        "sign_continuous_days",
+                        "sign_continuous_reward",
+                        "sign_rule",
+                        "enable_recharge",
+                        "limit_min_recharge",
+                        "enable_withdraw",
+                        "enable_withdraw_game",
+                        "enable_withdraw_bank",
+                        "limit_min_withdraw",
+                        "transfer_once_limit",
+                        "transfer_day_limit",
+                        "transfer_day_count_limit",
+                        "repeat_msg_interval",
+                        "nav_button1_enable",
+                        "nav_button1_title",
+                        "nav_button1_sort",
+                        "nav_button2_enable",
+                        "nav_button2_title",
+                        "nav_button2_sort",
+                        "enable_sms_register",
+                        "chatlink",
+                        "enable_register_pc",
+                        "transfer_once_min_limit",
+                        "enable_wallet",
+                        "enable_redpack",
+                        "redpack_amount_limit_min",
+                        "redpack_amount_limit_max",
+                        "redpack_team_amount_limit_min",
+                        "redpack_team_amount_limit_max",
+                        "redpack_timeout",
+                        "link",
+                        "redpack_p2p",
+                        "redpack_p2t"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "show_profile_sign",
+                        "enable_offline_tips",
+                        "offline_tips",
+                        "show_profile_id",
+                        "enable_pop_time",
+                        "pop_start_time",
+                        "pop_announcement",
+                        "enable_register",
+                        "enable_invite",
+                        "required_invite",
+                        "required_conf_avatar",
+                        "enable_online_status",
+                        "enable_msg_read_status",
+                        "enable_limit_repeat_input",
+                        "enable_limit_input_status",
+                        "enable_history_msg_button",
+                        "show_red_packet_details",
+                        "msg_interval",
+                        "msg_word_limit",
+                        "msg_block_interval",
+                        "allow_search_team_id",
+                        "show_team_members",
+                        "show_team_members_count",
+                        "show_team_members_bot_count",
+                        "allow_team_members_exit",
+                        "allow_team_owner_clear_msg",
+                        "show_team_invite_msg",
+                        "allow_team_user_visit_teaminfo",
+                        "enable_sign_activity",
+                        "sign_reward",
+                        "sign_continuous_days",
+                        "sign_continuous_reward",
+                        "sign_rule",
+                        "enable_recharge",
+                        "limit_min_recharge",
+                        "enable_withdraw",
+                        "enable_withdraw_game",
+                        "enable_withdraw_bank",
+                        "limit_min_withdraw",
+                        "transfer_once_limit",
+                        "transfer_day_limit",
+                        "transfer_day_count_limit",
+                        "repeat_msg_interval",
+                        "nav_button1_enable",
+                        "nav_button1_title",
+                        "nav_button1_sort",
+                        "nav_button2_enable",
+                        "nav_button2_title",
+                        "nav_button2_sort",
+                        "enable_sms_register",
+                        "chatlink",
+                        "enable_register_pc",
+                        "transfer_once_min_limit",
+                        "enable_wallet",
+                        "enable_redpack",
+                        "redpack_amount_limit_min",
+                        "redpack_amount_limit_max",
+                        "redpack_team_amount_limit_min",
+                        "redpack_team_amount_limit_max",
+                        "redpack_timeout",
+                        "link",
+                        "redpack_p2p",
+                        "redpack_p2t"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "",
+                      "data": {
+                        "show_profile_sign": "1",
+                        "enable_offline_tips": "1",
+                        "offline_tips": "123",
+                        "show_profile_id": "1",
+                        "enable_pop_time": "1",
+                        "pop_start_time": "",
+                        "pop_announcement": "3",
+                        "enable_register": "1",
+                        "enable_invite": "1",
+                        "required_invite": "0",
+                        "required_conf_avatar": "1",
+                        "enable_online_status": "1",
+                        "enable_msg_read_status": "1",
+                        "enable_limit_repeat_input": "0",
+                        "enable_limit_input_status": "1",
+                        "enable_history_msg_button": "1",
+                        "show_red_packet_details": "1",
+                        "msg_interval": "8",
+                        "msg_word_limit": "9",
+                        "msg_block_interval": "10",
+                        "allow_search_team_id": "1",
+                        "show_team_members": "1",
+                        "show_team_members_count": "1",
+                        "show_team_members_bot_count": "1",
+                        "allow_team_members_exit": "1",
+                        "allow_team_owner_clear_msg": "1",
+                        "show_team_invite_msg": "0",
+                        "allow_team_user_visit_teaminfo": "1",
+                        "enable_sign_activity": "1",
+                        "sign_reward": "11",
+                        "sign_continuous_days": "12",
+                        "sign_continuous_reward": "13",
+                        "sign_rule": "14",
+                        "enable_recharge": "1",
+                        "limit_min_recharge": "16",
+                        "enable_withdraw": "1",
+                        "enable_withdraw_game": "1",
+                        "enable_withdraw_bank": "1",
+                        "limit_min_withdraw": "17",
+                        "transfer_once_limit": "18",
+                        "transfer_day_limit": "19",
+                        "transfer_day_count_limit": "20",
+                        "repeat_msg_interval": "12",
+                        "nav_button1_enable": "1",
+                        "nav_button1_title": "发现",
+                        "nav_button1_sort": "0",
+                        "nav_button2_enable": "1",
+                        "nav_button2_title": "探索",
+                        "nav_button2_sort": "1"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5351757-run"
+      }
+    },
+    "/v6/msg/recall": {
+      "post": {
+        "summary": "消息撤回",
+        "x-apifox-folder": "消息",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "消息"
+        ],
+        "parameters": [
+          {
+            "name": "msgid",
+            "in": "query",
+            "description": "要撤回消息的msgid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "timetag",
+            "in": "query",
+            "description": "要撤回消息的创建时间",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "7:表示点对点消息撤回，8:表示群消息撤回，其它为参数错误",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "description": "发消息的accid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "description": "如果点对点消息，为接收消息的accid,如果群消息，为对应群的tid",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5401594-run"
+      }
+    },
+    "/v6/emoji/add": {
+      "post": {
+        "summary": "添加自定义表情",
+        "x-apifox-folder": "自定义表情",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "自定义表情"
+        ],
+        "parameters": [
+          {
+            "name": "imgpath",
+            "in": "query",
+            "description": "表情图片未压缩URL地址",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "imgCompPath",
+            "in": "query",
+            "description": "表情图片压缩的URL地址",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "1添加成功，0失败"
+                    },
+                    "info": {
+                      "type": "string",
+                      "description": "失败提示信息"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "imgId": {
+                          "type": "string",
+                          "description": "表情ID"
+                        }
+                      },
+                      "required": [
+                        "imgId"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "imgId"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "",
+                      "data": {
+                        "imgId": "3"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5402376-run"
+      }
+    },
+    "/v6/emoji/delete": {
+      "post": {
+        "summary": "删除自定义表情",
+        "x-apifox-folder": "自定义表情",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "自定义表情"
+        ],
+        "parameters": [
+          {
+            "name": "imgId",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {},
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": []
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "删除成功",
+                      "data": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5402377-run"
+      }
+    },
+    "/v6/emoji/get": {
+      "get": {
+        "summary": "获取自定义表情",
+        "x-apifox-folder": "自定义表情",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "获取当前用户的自定义表情列表",
+        "tags": [
+          "自定义表情"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "imgpath": {
+                            "type": "string",
+                            "description": "完整大图"
+                          },
+                          "imgCompPath": {
+                            "type": "string",
+                            "description": "缩略图"
+                          }
+                        },
+                        "x-apifox-ignore-properties": [],
+                        "x-apifox-orders": [
+                          "id",
+                          "imgpath",
+                          "imgCompPath"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "",
+                      "data": [
+                        {
+                          "id": 2,
+                          "imgpath": "https://nim-nosdn.netease.im/MTY3NzE3MDM=/bmltYV8xOTI5MTY4NDkwMl8xNTkyNzU1Nzg1NjE4XzhhZTMxZWM1LTczOWMtNDkxOS04ZmViLWQzYjUyMWI4OWJkMw==",
+                          "imgCompPath": "https://nim-nosdn.netease.im/MTY3NzE3MDM=/bmltYV8xOTI5MTY4NDkwMl8xNTkyNzU1Nzg1NjE4XzhhZTMxZWM1LTczOWMtNDkxOS04ZmViLWQzYjUyMWI4OWJkMw=="
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5402378-run"
+      }
+    },
+    "/v6/user/info": {
+      "get": {
+        "summary": "获取当前用户信息",
+        "x-apifox-folder": "用户信息",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户信息"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "username": {
+                          "type": "string"
+                        },
+                        "balance": {
+                          "type": "string"
+                        },
+                        "allow_login": {
+                          "type": "integer"
+                        },
+                        "allow_create_team": {
+                          "type": "integer"
+                        },
+                        "allow_add_friend": {
+                          "type": "integer"
+                        },
+                        "is_admin": {
+                          "type": "integer"
+                        },
+                        "enable_wallet": {
+                          "type": "integer"
+                        },
+                        "today_sign": {
+                          "type": "integer"
+                        },
+                        "sign_days": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "username",
+                        "balance",
+                        "allow_login",
+                        "allow_create_team",
+                        "allow_add_friend",
+                        "is_admin",
+                        "enable_wallet",
+                        "today_sign",
+                        "sign_days"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "id",
+                        "username",
+                        "balance",
+                        "allow_login",
+                        "allow_create_team",
+                        "allow_add_friend",
+                        "is_admin",
+                        "enable_wallet",
+                        "today_sign",
+                        "sign_days"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "",
+                      "data": {
+                        "id": 38177262,
+                        "username": "imu001",
+                        "balance": "1786.86",
+                        "allow_login": 1,
+                        "allow_create_team": 1,
+                        "allow_add_friend": 1,
+                        "is_admin": 1,
+                        "enable_wallet": 1,
+                        "today_sign": 1,
+                        "sign_days": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5402381-run"
+      }
+    },
+    "/v6/version": {
+      "post": {
+        "summary": "版本更新",
+        "x-apifox-folder": "公共接口",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "公共接口"
+        ],
+        "parameters": [
+          {
+            "name": "os",
+            "in": "query",
+            "description": "操作系统：1=Android,2=iOS,3=windows",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "当前客户端版本号",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "0:无需更新，1:有新版本需要功能"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "currVersion": {
+                          "type": "integer",
+                          "description": "线上版本号"
+                        },
+                        "downUrl": {
+                          "type": "string",
+                          "description": "包地址"
+                        },
+                        "description": {
+                          "type": "string",
+                          "description": "更新说明"
+                        },
+                        "updateType": {
+                          "type": "string",
+                          "description": "1强制更新 0新特性更新"
+                        },
+                        "tm": {
+                          "type": "integer",
+                          "description": "发布时间戳"
+                        }
+                      },
+                      "required": [
+                        "currVersion",
+                        "downUrl",
+                        "description",
+                        "updateType",
+                        "tm"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "currVersion",
+                        "downUrl",
+                        "description",
+                        "updateType",
+                        "tm"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "发现新版本！",
+                      "data": {
+                        "currVersion": 67,
+                        "downUrl": "https://0-0.tech/rtuJQ0",
+                        "description": "升级",
+                        "updateType": "0",
+                        "tm": 1591173787
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417018-run"
+      }
+    },
+    "/v6/wallet/setPwd": {
+      "post": {
+        "summary": "首次设置支付密码",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [
+          {
+            "name": "password",
+            "in": "query",
+            "description": "支付密码",
+            "required": true,
+            "example": "qq123123",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "repassword",
+            "in": "query",
+            "description": "确认密码",
+            "required": true,
+            "example": "qq123123",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417019-run"
+      }
+    },
+    "/v6/wallet/modifyPwd": {
+      "post": {
+        "summary": "修改支付密码",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [
+          {
+            "name": "oldpass",
+            "in": "query",
+            "description": "旧密码",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newpass",
+            "in": "query",
+            "description": "新密码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "renewpass",
+            "in": "query",
+            "description": "确认新密码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417020-run"
+      }
+    },
+    "/v6/wallet/transfer": {
+      "post": {
+        "summary": "转账",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "转账金额",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "支付密码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "touid",
+            "in": "query",
+            "description": "收款人ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417021-run"
+      }
+    },
+    "/v6/wallet/withdraw": {
+      "post": {
+        "summary": "提现",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "提现金额",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "acttype",
+            "in": "query",
+            "description": "0:提现到游戏平台，1:提交到银行卡",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "支付密码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "account",
+            "in": "query",
+            "description": "平台账号/卡号",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "real_name",
+            "in": "query",
+            "description": "真实姓名",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bank_name",
+            "in": "query",
+            "description": "银行名称",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417022-run"
+      }
+    },
+    "/v6/wallet/recharge": {
+      "post": {
+        "summary": "充值",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "1.21",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "0=线下支付,1=支付宝,2=微信",
+            "required": true,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417023-run"
+      }
+    },
+    "/v6/wallet/bill": {
+      "post": {
+        "summary": "资金流水",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "页码",
+            "required": false,
+            "example": "1",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "page": {
+                          "type": "object",
+                          "properties": {
+                            "limit": {
+                              "type": "integer"
+                            },
+                            "total": {
+                              "type": "integer"
+                            },
+                            "pages": {
+                              "type": "integer"
+                            },
+                            "current": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "limit",
+                            "total",
+                            "pages",
+                            "current"
+                          ],
+                          "description": "分页",
+                          "x-apifox-ignore-properties": [],
+                          "x-apifox-orders": [
+                            "limit",
+                            "total",
+                            "pages",
+                            "current"
+                          ]
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "integer"
+                              },
+                              "user_id": {
+                                "type": "integer"
+                              },
+                              "amount": {
+                                "type": "string"
+                              },
+                              "before": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string"
+                              },
+                              "remark": {
+                                "type": "string"
+                              },
+                              "extra": {
+                                "type": "string"
+                              },
+                              "create_time": {
+                                "type": "integer"
+                              }
+                            },
+                            "required": [
+                              "id",
+                              "user_id",
+                              "amount",
+                              "before",
+                              "type",
+                              "remark",
+                              "extra",
+                              "create_time"
+                            ],
+                            "x-apifox-ignore-properties": [],
+                            "x-apifox-orders": [
+                              "id",
+                              "user_id",
+                              "amount",
+                              "before",
+                              "type",
+                              "remark",
+                              "extra",
+                              "create_time"
+                            ]
+                          },
+                          "description": "数据列表"
+                        }
+                      },
+                      "required": [
+                        "page",
+                        "list"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "page",
+                        "list"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "",
+                      "data": {
+                        "page": {
+                          "limit": 10,
+                          "total": 14,
+                          "pages": 2,
+                          "current": 1
+                        },
+                        "list": [
+                          {
+                            "id": 16,
+                            "user_id": 38177262,
+                            "amount": "0.11",
+                            "before": "8.75",
+                            "type": "6",
+                            "remark": "",
+                            "extra": "412",
+                            "create_time": 1628461032
+                          },
+                          {
+                            "id": 15,
+                            "user_id": 38177262,
+                            "amount": "3.00",
+                            "before": "5.75",
+                            "type": "7",
+                            "remark": "",
+                            "extra": "4",
+                            "create_time": 1628460865
+                          },
+                          {
+                            "id": 14,
+                            "user_id": 38177262,
+                            "amount": "3.00",
+                            "before": "2.75",
+                            "type": "7",
+                            "remark": "",
+                            "extra": "5",
+                            "create_time": 1628460853
+                          },
+                          {
+                            "id": 13,
+                            "user_id": 38177262,
+                            "amount": "-3.00",
+                            "before": "5.75",
+                            "type": "1",
+                            "remark": "",
+                            "extra": "5",
+                            "create_time": 1628460458
+                          },
+                          {
+                            "id": 12,
+                            "user_id": 38177262,
+                            "amount": "3.00",
+                            "before": "8.75",
+                            "type": "1",
+                            "remark": "",
+                            "extra": "4",
+                            "create_time": 1628460408
+                          },
+                          {
+                            "id": 11,
+                            "user_id": 38177262,
+                            "amount": "3.00",
+                            "before": "11.75",
+                            "type": "1",
+                            "remark": "",
+                            "extra": "3",
+                            "create_time": 1628460407
+                          },
+                          {
+                            "id": 10,
+                            "user_id": 38177262,
+                            "amount": "2.00",
+                            "before": "9.75",
+                            "type": "0",
+                            "remark": "",
+                            "extra": "4",
+                            "create_time": 1628453131
+                          },
+                          {
+                            "id": 9,
+                            "user_id": 38177262,
+                            "amount": "3.00",
+                            "before": "6.75",
+                            "type": "0",
+                            "remark": "",
+                            "extra": "5",
+                            "create_time": 1628453127
+                          },
+                          {
+                            "id": 8,
+                            "user_id": 38177262,
+                            "amount": "4.00",
+                            "before": "2.75",
+                            "type": "0",
+                            "remark": "",
+                            "extra": "6",
+                            "create_time": 1628453034
+                          },
+                          {
+                            "id": 7,
+                            "user_id": 38177262,
+                            "amount": "1.21",
+                            "before": "1.54",
+                            "type": "0",
+                            "remark": "",
+                            "extra": "2",
+                            "create_time": 1628452844
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417024-run"
+      }
+    },
+    "/v6/wallet/bindBankcard": {
+      "post": {
+        "summary": "绑定银行卡",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417025-run"
+      }
+    },
+    "/v6/wallet/getBankcard": {
+      "get": {
+        "summary": "获取已绑定的银行卡",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417026-run"
+      }
+    },
+    "/unbindBankcard": {
+      "post": {
+        "summary": "解绑银行卡",
+        "x-apifox-folder": "钱包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "钱包"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417027-run"
+      }
+    },
+    "/v6/user/search": {
+      "post": {
+        "summary": "搜索新用户",
+        "x-apifox-folder": "用户信息",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户信息"
+        ],
+        "parameters": [
+          {
+            "name": "account",
+            "in": "query",
+            "description": "要搜索的账号或ID",
+            "required": true,
+            "example": "dat123",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "1找到用户；0未找到用户"
+                    },
+                    "info": {
+                      "type": "string",
+                      "description": "为找到用户提示信息"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "云信ID"
+                        },
+                        "nickname": {
+                          "type": "string",
+                          "description": "昵称"
+                        },
+                        "avatar": {
+                          "type": "string",
+                          "description": "头像"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "nickname",
+                        "avatar"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "id",
+                        "nickname",
+                        "avatar"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "找到用户！",
+                      "data": {
+                        "id": 38177262,
+                        "nickname": "我是一个昵称",
+                        "avatar": ""
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417028-run"
+      }
+    },
+    "/v6/user/modifyPass": {
+      "post": {
+        "summary": "修改登陆密码",
+        "x-apifox-folder": "用户信息",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户信息"
+        ],
+        "parameters": [
+          {
+            "name": "oldpass",
+            "in": "query",
+            "description": "旧密码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newpass",
+            "in": "query",
+            "description": "新密码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "renewpass",
+            "in": "query",
+            "description": "确认新密码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417029-run"
+      }
+    },
+    "/v6/sign/checkin": {
+      "get": {
+        "summary": "签到",
+        "x-apifox-folder": "签到",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "签到"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "1签到成功，0签到失败"
+                    },
+                    "info": {
+                      "type": "string",
+                      "description": "失败提示信息"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "coin": {
+                          "type": "integer",
+                          "description": "签到获得金币数量"
+                        },
+                        "days": {
+                          "type": "integer",
+                          "description": "联系签到天数"
+                        }
+                      },
+                      "required": [
+                        "coin",
+                        "days"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "coin",
+                        "days"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "签到成功",
+                      "data": {
+                        "coin": 11,
+                        "days": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417035-run"
+      }
+    },
+    "/v6/sign/monthLog": {
+      "get": {
+        "summary": "本月签到记录",
+        "x-apifox-folder": "签到",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "签到"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "user_id": {
+                            "type": "integer"
+                          },
+                          "day": {
+                            "type": "string",
+                            "description": "签到日期"
+                          },
+                          "lianxu": {
+                            "type": "integer",
+                            "description": "连续签到天数"
+                          },
+                          "create_time": {
+                            "type": "integer",
+                            "description": "签到时间戳"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "user_id",
+                          "day",
+                          "lianxu",
+                          "create_time"
+                        ],
+                        "x-apifox-ignore-properties": [],
+                        "x-apifox-orders": [
+                          "id",
+                          "user_id",
+                          "day",
+                          "lianxu",
+                          "create_time"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "查询成功",
+                      "data": [
+                        {
+                          "id": 406,
+                          "user_id": 38177262,
+                          "day": "20210807",
+                          "lianxu": 1,
+                          "create_time": 1628271748
+                        },
+                        {
+                          "id": 407,
+                          "user_id": 38177262,
+                          "day": "20210808",
+                          "lianxu": 2,
+                          "create_time": 1628271748
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417036-run"
+      }
+    },
+    "/v6/feedback/commit": {
+      "post": {
+        "summary": "提交意见反馈",
+        "x-apifox-folder": "用户信息",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "用户信息"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5417037-run"
+      }
+    },
+    "/v6/msg/sendBatchMsg": {
+      "post": {
+        "summary": "消息群发",
+        "x-apifox-folder": "消息",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "消息"
+        ],
+        "parameters": [
+          {
+            "name": "toAccids",
+            "in": "query",
+            "description": "群发用户ID数组字符串",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "msg",
+            "in": "query",
+            "description": "消息内容",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5439544-run"
+      }
+    },
+    "/v6/redpack/give": {
+      "post": {
+        "summary": "发红包",
+        "x-apifox-folder": "红包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "红包"
+        ],
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "红包类型0:个人红包,1=群红包",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "recv_id",
+            "in": "query",
+            "description": "红包接受对象（群ID、个人ID）",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rand",
+            "in": "query",
+            "description": "拼手气:0=否,1=是，个人红包固定为0",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "description": "红包数量（个人红包，可留空）",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "description": "红包金额",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "支付密码",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "words",
+            "in": "query",
+            "description": "红包祝福语",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "1成功"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "redid": {
+                          "type": "string",
+                          "description": "红包ID"
+                        },
+                        "words": {
+                          "type": "string",
+                          "description": "祝福语"
+                        }
+                      },
+                      "required": [
+                        "redid",
+                        "words"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "redid",
+                        "words"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "红包已发送",
+                      "data": {
+                        "redid": "289",
+                        "words": "123123"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5466503-run"
+      }
+    },
+    "/v6/redpack/accept": {
+      "post": {
+        "summary": "领取红包",
+        "x-apifox-folder": "红包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "红包"
+        ],
+        "parameters": [
+          {
+            "name": "redid",
+            "in": "query",
+            "description": "红包ID",
+            "required": true,
+            "example": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "integer",
+                          "description": "领取金额"
+                        }
+                      },
+                      "required": [
+                        "amount"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "amount"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "成功领取红包",
+                      "data": {
+                        "amount": 12
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5466505-run"
+      }
+    },
+    "/v6/redpack/detail": {
+      "post": {
+        "summary": "红包详情",
+        "x-apifox-folder": "红包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "红包"
+        ],
+        "parameters": [
+          {
+            "name": "redid",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "example": "288",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "页码",
+            "required": false,
+            "example": "2",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "红包ID"
+                        },
+                        "user_id": {
+                          "type": "integer",
+                          "description": "红包发送者ID"
+                        },
+                        "type": {
+                          "type": "string"
+                        },
+                        "recv_id": {
+                          "type": "integer",
+                          "description": "接受对象ID"
+                        },
+                        "count": {
+                          "type": "integer",
+                          "description": "红包数量"
+                        },
+                        "amount": {
+                          "type": "string",
+                          "description": "红包金额"
+                        },
+                        "rand": {
+                          "type": "string",
+                          "description": "0固定金额；1拼手气"
+                        },
+                        "words": {
+                          "type": "string",
+                          "description": "祝福语"
+                        },
+                        "left_count": {
+                          "type": "integer",
+                          "description": "剩余数量"
+                        },
+                        "left_amount": {
+                          "type": "string",
+                          "description": "剩余金额"
+                        },
+                        "create_time": {
+                          "type": "integer",
+                          "description": "派发时间"
+                        },
+                        "refund_time": {
+                          "type": "integer"
+                        },
+                        "user_nickname": {
+                          "type": "string",
+                          "description": "红包发送者昵称"
+                        },
+                        "user_avatar": {
+                          "type": "string",
+                          "description": "红包发送者头像"
+                        },
+                        "list": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "user_id": {
+                                "type": "integer"
+                              },
+                              "amount": {
+                                "type": "string"
+                              },
+                              "create_time": {
+                                "type": "integer"
+                              },
+                              "username": {
+                                "type": "string"
+                              },
+                              "nickname": {
+                                "type": "string"
+                              }
+                            },
+                            "x-apifox-ignore-properties": [],
+                            "x-apifox-orders": [
+                              "user_id",
+                              "amount",
+                              "create_time",
+                              "username",
+                              "nickname"
+                            ]
+                          },
+                          "description": "领取记录"
+                        },
+                        "maxAmountRecord": {
+                          "type": "object",
+                          "properties": {
+                            "user_id": {
+                              "type": "integer"
+                            },
+                            "amount": {
+                              "type": "string"
+                            },
+                            "create_time": {
+                              "type": "integer"
+                            },
+                            "username": {
+                              "type": "string"
+                            },
+                            "nickname": {
+                              "type": "string"
+                            }
+                          },
+                          "description": "手气最佳",
+                          "required": [
+                            "user_id",
+                            "amount",
+                            "create_time",
+                            "username",
+                            "nickname"
+                          ],
+                          "x-apifox-ignore-properties": [],
+                          "x-apifox-orders": [
+                            "user_id",
+                            "amount",
+                            "create_time",
+                            "username",
+                            "nickname"
+                          ]
+                        },
+                        "lastTime": {
+                          "type": "integer",
+                          "description": "最后领取时间"
+                        },
+                        "myAmount": {
+                          "type": "string",
+                          "description": "我领取的金额"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "user_id",
+                        "type",
+                        "recv_id",
+                        "count",
+                        "amount",
+                        "rand",
+                        "words",
+                        "left_count",
+                        "left_amount",
+                        "create_time",
+                        "refund_time",
+                        "user_nickname",
+                        "user_avatar",
+                        "list",
+                        "maxAmountRecord",
+                        "lastTime",
+                        "myAmount"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "id",
+                        "user_id",
+                        "type",
+                        "recv_id",
+                        "count",
+                        "amount",
+                        "rand",
+                        "words",
+                        "left_count",
+                        "left_amount",
+                        "create_time",
+                        "refund_time",
+                        "user_nickname",
+                        "user_avatar",
+                        "list",
+                        "maxAmountRecord",
+                        "lastTime",
+                        "myAmount"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "",
+                      "data": {
+                        "id": 288,
+                        "user_id": 38177262,
+                        "type": "0",
+                        "recv_id": 97800862,
+                        "count": 1,
+                        "amount": "12.00",
+                        "rand": "0",
+                        "words": "恭喜发财,大吉大利",
+                        "left_count": 0,
+                        "left_amount": "0.00",
+                        "create_time": 1628711306,
+                        "refund_time": 0,
+                        "user_nickname": "我是一个昵称",
+                        "user_avatar": "",
+                        "list": [
+                          {
+                            "user_id": 97800862,
+                            "amount": "12.00",
+                            "create_time": 1628711700,
+                            "username": "imu002",
+                            "nickname": "我是一个昵称"
+                          }
+                        ],
+                        "maxAmountRecord": 12,
+                        "lastTime": 1628711700,
+                        "myAmount": "12.00"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5466506-run"
+      }
+    },
+    "/v6/redpack/isAccept": {
+      "post": {
+        "summary": "判断红包是否已领取",
+        "x-apifox-folder": "红包",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "红包"
+        ],
+        "parameters": [
+          {
+            "name": "redid",
+            "in": "query",
+            "description": "红包是否已领取",
+            "required": true,
+            "example": "288",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer"
+                    },
+                    "info": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "isAccept": {
+                          "type": "integer",
+                          "description": "0未领取，1已领取过"
+                        }
+                      },
+                      "required": [
+                        "isAccept"
+                      ],
+                      "x-apifox-ignore-properties": [],
+                      "x-apifox-orders": [
+                        "isAccept"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "info",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": [
+                    "code",
+                    "info",
+                    "data"
+                  ]
+                },
+                "examples": {
+                  "1": {
+                    "summary": "成功示例",
+                    "value": {
+                      "code": 1,
+                      "info": "",
+                      "data": {
+                        "isAccept": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5466507-run"
+      }
+    },
+    "/v6/getSmsCode": {
+      "post": {
+        "summary": "获取短信验证码",
+        "x-apifox-folder": "注册/登陆",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [
+          "注册/登陆"
+        ],
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "query",
+            "description": "手机号码",
+            "required": true,
+            "example": "17644450503",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://www.apifox.cn/web/project/405421/apis/api-5532555-run"
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
